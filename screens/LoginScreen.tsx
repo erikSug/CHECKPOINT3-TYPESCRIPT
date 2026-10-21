@@ -4,18 +4,11 @@ import {
 } from 'react-native';
 const LoginScreen = (): JSX.Element => {
     return (
-        <View
-            style={{
-                flex: 1,
-                backgroundColor: 'white',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <Text style={{ color: 'black', fontSize: 30 }}>
-                TESTE FUNCIONOU!
-            </Text>
-        </View>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            
+        
+        </KeyboardAvoidingView>
     )
 }
 
