@@ -9,3 +9,8 @@ export interface Music {
   year: number;
   durationSec: number;
 }
+
+export type RootStackParamList = {
+  Login: undefined;
+  Detail: { music: Music };
+};
