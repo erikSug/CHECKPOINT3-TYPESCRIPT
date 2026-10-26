@@ -12,7 +12,7 @@ const App = (): JSX.Element => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Cadastro' component={CadastroScreen} options={{ headerShown: false }}></Stack.Screen>
+        <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
