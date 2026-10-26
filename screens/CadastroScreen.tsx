@@ -15,42 +15,60 @@ const CadastroScreen = (): JSX.Element => {
         setUser(text);
     }
     const changePassword = (text: string): void => {
-        setUser(text);
+        setPassword(text);
     }
     const changePasswordConfirm = (text: string): void => {
         setPasswordConfirm(text);
     }
     return (
         <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-            <View>
-                <Text>Nome: </Text>
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
+            <View style={styles.content}>
+                <Text style={styles.title}>Cadastro</Text>
+                <Text style={styles.subtitle}>Usuário</Text>
                 <TextInput
-                    placeholder="Seu nome..."
+                    style={styles.input}
+                    placeholder="Seu usuário.."
                     placeholderTextColor="#9A9AA3"
                     value={user}
                     onChangeText={changeUser}
                 />
-                <Text>Criar a senha: </Text>
+                <Text style={styles.subtitle}>Senha</Text>
                 <TextInput
-                    placeholder="Sua senha..."
+                    style={styles.input}
+                    placeholder="Sua senha.."
                     placeholderTextColor="#9A9AA3"
                     value={password}
                     onChangeText={changePassword}
+                    secureTextEntry={true}
                 />
-                <Text>Confirme a senha: </Text>
+
+                <Text style={styles.subtitle}>Confirme sua senha</Text>
                 <TextInput
-                    placeholder="Confirme sua senha..."
+                    style={styles.input}
+                    placeholder="Sua senha.."
                     placeholderTextColor="#9A9AA3"
                     value={passwordConfirm}
                     onChangeText={changePasswordConfirm}
+                    secureTextEntry={true}
                 />
+
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>CADASTRAR</Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <Text>Cadastrar</Text>
-            </TouchableOpacity>
         </KeyboardAvoidingView>
     )
 }
 
 export default CadastroScreen
+const styles = StyleSheet.create({
+    screen: { flex: 1, backgroundColor: '#0E0E10' },
+    content: { flex: 1, justifyContent: 'center', paddingHorizontal: 28 },
+    title: { color: '#ED145B', fontSize: 28, fontWeight: 'bold' },
+    subtitle: { color: '#9A9AA3', fontSize: 14, marginTop: 8, marginBottom: 24 },
+    input: { backgroundColor: '#17171B', borderWidth: 1, borderColor: '#2A2A31', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, color: '#EDEDEF', fontSize: 16 },
+    error: { color: '#FF4D94', fontSize: 12, marginTop: 6 },
+    button: { backgroundColor: '#ED145B', borderRadius: 999, paddingVertical: 14, alignItems: 'center', marginTop: 24 },
+    buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+});

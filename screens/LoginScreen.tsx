@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                     placeholderTextColor="#9A9AA3"
                     value={password}
                     onChangeText={changePassword}
-
+                    secureTextEntry={true}
                 />
                 {error !== '' && <Text style={styles.error}>{error}</Text>}
 
