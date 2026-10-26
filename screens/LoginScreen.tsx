@@ -21,7 +21,7 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
     }
 
     const enterUser = (): void => {
-
+        
     }
 
     const navCadastro = (): void => {
@@ -52,8 +52,8 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                 />
                 {error !== '' && <Text style={styles.error}>{error}</Text>}
 
-                <TouchableOpacity style={styles.subtitle}>
-                    <Text style={styles.subtitle} onPress={navCadastro}>Não tem conta? Cadastre-se</Text>
+                <TouchableOpacity style={styles.subtitle} onPress={navCadastro}>
+                    <Text style={styles.subtitle} >Não tem conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     screen: { flex: 1, backgroundColor: '#0E0E10' },
     content: { flex: 1, justifyContent: 'center', paddingHorizontal: 28 },
     title: { color: '#ED145B', fontSize: 28, fontWeight: 'bold' },
-    subtitle: { color: '#9A9AA3', fontSize: 14, marginTop: 8, marginBottom: 24 },
+    subtitle: { color: '#9A9AA3', fontSize: 14, marginTop: 17, marginBottom: 17 },
     input: { backgroundColor: '#17171B', borderWidth: 1, borderColor: '#2A2A31', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, color: '#EDEDEF', fontSize: 16 },
     error: { color: '#FF4D94', fontSize: 12, marginTop: 6 },
     button: { backgroundColor: '#ED145B', borderRadius: 999, paddingVertical: 14, alignItems: 'center', marginTop: 24 },
