@@ -2,7 +2,12 @@ import { useState, useEffect, type JSX } from 'react'
 import {
     View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,
 } from 'react-native';
-const LoginScreen = (): JSX.Element => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types';
+
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+const LoginScreen = ({ navigation }: Props): JSX.Element => {
     const [user, setUser] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
@@ -15,12 +20,12 @@ const LoginScreen = (): JSX.Element => {
         setPassword(text);
     }
 
-    const enterUser = ():void => {
-        
+    const enterUser = (): void => {
+
     }
 
-    const navCadastro = ():void => {
-        
+    const navCadastro = (): void => {
+        navigation.navigate('Cadastro')
     }
     return (
         <KeyboardAvoidingView
@@ -48,7 +53,7 @@ const LoginScreen = (): JSX.Element => {
                 {error !== '' && <Text style={styles.error}>{error}</Text>}
 
                 <TouchableOpacity style={styles.subtitle}>
-                    <Text style={styles.subtitle}>Não tem conta? Cadastre-se</Text>
+                    <Text style={styles.subtitle} onPress={navCadastro}>Não tem conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
