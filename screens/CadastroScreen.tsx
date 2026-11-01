@@ -5,6 +5,8 @@ import {
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Cadastro'>;
 
@@ -53,7 +55,7 @@ const CadastroScreen = ({ navigation }: Props): JSX.Element => {
         setErrorPasswordConfirm(validatePasswordConfirm(password, text));
     }
 
-    const cadastro = (): void => {
+    const cadastro = async (): Promise<void> => {
 
         const messageUser = validateUser(user);
         const messagePassword = validatePassword(password);
@@ -64,15 +66,25 @@ const CadastroScreen = ({ navigation }: Props): JSX.Element => {
         setErrorPassword(messagePassword);
         setErrorPasswordConfirm(messagePasswordConfirm);
 
-
-        if (messageUser === '' && messagePassword === '' && messagePasswordConfirm === '') {
-            Alert.alert("Sucesso", "Conta criada com sucesso!", [
-                { 
-                    text: "OK", 
-                    onPress: () => navigation.goBack() // Agora sim, volta pro login explicitamente quando o usuário clica em OK
-                }
-            ]);
+        if (messageUser !== '' || messagePassword !== '' || messagePasswordConfirm !== '') {
+            return;
         }
+
+        try{
+            await AsyncStorage.setItem(
+                'account',
+                JSON.stringify({ username: user, password: password })
+            );
+            Alert.alert("Sucesso", "Conta criada com sucesso!", [
+            { 
+                text: "OK", 
+                onPress: () => navigation.goBack() 
+            }
+        ]);
+        } catch (error){
+
+        }
+
     }
 
     return (
