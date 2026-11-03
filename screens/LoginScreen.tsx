@@ -74,8 +74,8 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                     <Text style={styles.subtitle} >Não tem conta? Cadastre-se</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText} onPress={login}>ENTRAR</Text>
+                <TouchableOpacity style={styles.button} onPress={login}>
+                    <Text style={styles.buttonText} >ENTRAR</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
