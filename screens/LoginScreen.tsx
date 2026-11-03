@@ -1,10 +1,10 @@
 import { useState, useEffect, type JSX } from 'react'
 import {
-    View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,
+    View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,Alert,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 const LoginScreen = ({ navigation }: Props): JSX.Element => {
@@ -20,9 +20,27 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
         setPassword(text);
     }
 
-    const enterUser = (): void => {
-        
-    }
+    const login = async (): Promise<void> => {
+        try {
+            const stored = await AsyncStorage.getItem('account');
+
+            
+            if (stored === null) {
+                Alert.alert("Erro", "Nenhuma conta cadastrada.");
+                return;
+            }
+
+            const account = JSON.parse(stored);
+
+            if (account.username === user && account.password === password) {
+                navigation.navigate('Home');
+            } else {
+                Alert.alert("Erro", "Usuário ou senha incorretos.");
+            }
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possível acessar os dados. Tente novamente.");
+        }
+    };
 
     const navCadastro = (): void => {
         navigation.navigate('Cadastro')
@@ -57,7 +75,7 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>ENTRAR</Text>
+                    <Text style={styles.buttonText} onPress={login}>ENTRAR</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

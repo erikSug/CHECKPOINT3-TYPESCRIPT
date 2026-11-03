@@ -13,5 +13,6 @@ export interface Music {
 export type RootStackParamList = {
   Login: undefined;
   Cadastro: undefined;
+  Home: undefined;
   Detail: { music: Music };
 };  
