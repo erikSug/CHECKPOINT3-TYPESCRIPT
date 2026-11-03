@@ -32,15 +32,30 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
 
             const account = JSON.parse(stored);
 
-            if (account.username === user && account.password === password) {
-                navigation.navigate('Home');
-            } else {
+            if (account.username !== user || account.password !== password) {    
                 Alert.alert("Erro", "Usuário ou senha incorretos.");
+                return
             }
+            await storeSession();
+            navigation.navigate('Home');
+
         } catch (error) {
             Alert.alert("Erro", "Não foi possível acessar os dados. Tente novamente.");
         }
     };
+
+    const storeSession = async (): Promise<void> => {
+        try{
+            await AsyncStorage.setItem(
+                'session',
+                JSON.stringify({ username: user })
+            );
+       
+        } catch (error){
+
+        }
+    }
+
 
     const navCadastro = (): void => {
         navigation.navigate('Cadastro')

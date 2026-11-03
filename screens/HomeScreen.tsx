@@ -1,4 +1,4 @@
-import { useState, type JSX } from 'react'
+import { useEffect, useState,  type JSX } from 'react'
 import {
     View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,
     Alert,
@@ -11,11 +11,35 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: Props): JSX.Element => {
+    const [username, setUsername] = useState<string>('');
+    useEffect(() => {
+        const loadSession = async (): Promise<void> => {
+            const stored = await AsyncStorage.getItem('session');
+            if (stored) {
+                setUsername(JSON.parse(stored).username);
+            }
+        };
+        loadSession();
+    }, []);
+
+    const sair = async (): Promise<void> => {
+        await AsyncStorage.removeItem('session');
+        navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
+    };
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
-                <Text style={styles.subtitle}>BEM VINDO A HOME</Text>
+                <View style={styles.content}>
+                    <Text style={styles.title}>Bem-vindo, {username}! </Text>
+                    <Text style={styles.subtitle}>1000 músicas estão esperando por você! </Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.buttonText}>VER MÚSICAS</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={sair}>
+                        <Text style={styles.buttonText}>SAIR</Text>
+                    </TouchableOpacity>
+                </View>
         </KeyboardAvoidingView>
     )
 }

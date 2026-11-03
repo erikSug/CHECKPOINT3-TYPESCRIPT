@@ -42,7 +42,7 @@ const CadastroScreen = ({ navigation }: Props): JSX.Element => {
 
     const changeUser = (text: string): void => {
         setUser(text);
-        setErrorUser(validateUser(text)); // Valida em tempo real (opcional, mas melhora a UX)
+        setErrorUser(validateUser(text));
     }
     
     const changePassword = (text: string): void => {
