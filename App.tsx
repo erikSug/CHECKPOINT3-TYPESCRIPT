@@ -6,6 +6,7 @@ import { RootStackParamList } from './types';
 import LoginScreen from './screens/LoginScreen';
 import CadastroScreen from './screens/CadastroScreen';
 import HomeScreen  from './screens/HomeScreen';
+import ListScreen from './screens/ListScreen';
 
 // STACK: uma tela por cima da outra. É a raiz do app
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,6 +18,7 @@ const App = (): JSX.Element => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Cadastro" component={CadastroScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Lista" component={ListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

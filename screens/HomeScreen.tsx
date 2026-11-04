@@ -22,6 +22,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
         loadSession();
     }, []);
 
+    const navLista = (): void => {
+        navigation.navigate('Lista')
+    }
     const sair = async (): Promise<void> => {
         await AsyncStorage.removeItem('session');
         navigation.reset({ index: 0, routes: [{ name: 'Login' }] });
@@ -32,10 +35,12 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
                 <View style={styles.content}>
                     <Text style={styles.title}>Bem-vindo, {username}! </Text>
-                    <Text style={styles.subtitle}>1000 músicas estão esperando por você! </Text>
-                    <TouchableOpacity style={styles.button}>
+                    <Text style={styles.subtitle}>5000 músicas estão esperando por você! </Text>
+
+                    <TouchableOpacity style={styles.button} onPress={navLista}>
                         <Text style={styles.buttonText}>VER MÚSICAS</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={styles.button} onPress={sair}>
                         <Text style={styles.buttonText}>SAIR</Text>
                     </TouchableOpacity>

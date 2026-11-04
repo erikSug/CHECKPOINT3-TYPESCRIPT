@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Music, RootStackParamList } from '../types';
 import { MUSICS, formatDuration } from '../data/musics';
@@ -8,7 +8,7 @@ import { MUSICS, formatDuration } from '../data/musics';
 // desenha as músicas todas de uma vez. Com 100 mil a tela nunca chega; com TOTAL_MUSICS = 5000
 // ela trava uns segundos e aparece. A sua tarefa: converter para FlatList e voltar a 100 mil
 const ListScreen = (): JSX.Element => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'Lista'>>();
 
   const open = (music: Music): void => {
     // TRANSIÇÃO Lista → Detalhe: a sua escolha, levando a música junto
@@ -18,14 +18,21 @@ const ListScreen = (): JSX.Element => {
     <View style={styles.screen}>
       <Text style={styles.title}>MÚSICAS</Text>
       <Text style={styles.counter}>{MUSICS.length} músicas</Text>
-      <ScrollView contentContainerStyle={styles.list}>
-        {MUSICS.map((music: Music) => (
-          <TouchableOpacity key={music.id} style={styles.row} onPress={() => open(music)}>
-            <Text style={styles.name}>{music.title}</Text>
-            <Text style={styles.detail}>{music.artist} · {music.genre} · {formatDuration(music.durationSec)}</Text>
+      <FlatList
+        data={MUSICS}
+        keyExtractor={(music: Music) => music.id}
+        contentContainerStyle={styles.list}
+        initialNumToRender={15}
+        windowSize={7}
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.row} onPress={() => open(item)}>
+            <Text style={styles.name}>{item.title}</Text>
+            <Text style={styles.detail}>
+              {item.artist} · {item.genre} · {formatDuration(item.durationSec)}
+            </Text>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 };
