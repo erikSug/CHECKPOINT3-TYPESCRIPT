@@ -2,6 +2,9 @@
   "name": "catalogo-musica",
   "version": "1.0.0",
   "main": "index.ts",
+  "author":  "Erik K. Suguiyama",  "rm":  "559273",
+  "author2": "Guilherme Vital", "rm2": "560073",
+  "author3": "Kayque Carvalho", "rm3": "561189",
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",
     "@react-navigation/native": "^7.5.1",
