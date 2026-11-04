@@ -36,9 +36,9 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                 Alert.alert("Erro", "Usuário ou senha incorretos.");
                 return
             }
-            await storeSession();
-            navigation.navigate('Home');
 
+            await storeSession();
+            navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
         } catch (error) {
             Alert.alert("Erro", "Não foi possível acessar os dados. Tente novamente.");
         }
