@@ -1,0 +1,9 @@
+# RESPOSTAS
+1 - Login -> Cadastro: navigate('Cadastro'). O navigate faz com que coloque a tela de Cadastro em cima da tela de login. Quando voltamos, ela tira a tela de Cadastro e mostra a de login.
+2 e 3 - Cadastro/Login -> Home : Faz um reset para a Home. O reset ele zera as stacks e mostra só a Home, fazendo com que o voltar não vá para o cadastro e nem para o login de novo. Foi necessário o reset para que o usuário não volte para o Login ou Cadastro quando logado. 
+4 - Home -> Lista : navigate('Lista'). O navigate da home para a lista faz com que mostre a lista em cima da Home, quando volta ela tira a lista e mostra a Home. 
+5 - Lista -> Detalhe: O detalhe precisa receber os dados da música escolhida para mostrar na tela, por isso, utiliza o navigate('Detail', { music }). Fazendo com que esses parâmetros passem para o detalhe e é lido no route.params.music. O voltar tira o detalhe e volta à lista.
+6 - Detalhe -> Próxima Música: push('Detail', { music: next }), O push empilha mais uma tela Detail, só que com a próxima música (Stack aumenta em 1). O voltar ela tira esse Detail novo e vai para a tela anterior (A música anterior).
+7 - Detalhe -> Voltar: O goBack() desmonta a tela de cima, ficando uma tela menos na stack. Assim, mostrando a tela anterior (Lista ou a música de antes).
+8 - Detalhe -> Início: O popToTop() desmonta de uma vez todas as telas, fazendo voltar para a primeira que seria a Home. Depois não tem como voltar.
+9 - Home -> Sair: removeItem('session') e reset para o Login. A sessão guardada no AsyncStorage é apagada e a tela volta para o Login, fazendo com que o Voltar não traz a tela de Home com a sessão da pessoa que saiu.
