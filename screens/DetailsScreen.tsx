@@ -1,11 +1,9 @@
-import { useEffect, useState,  type JSX } from 'react'
+import {type JSX } from 'react'
 import {
-    View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,
-    Alert,
+    View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {MUSICS, formatDuration } from '../data/musics';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Detail'>;
@@ -15,7 +13,6 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
 
     const index = MUSICS.findIndex((m) => m.id === music.id);
     const next= MUSICS[index + 1];
-    const previous = MUSICS[index - 1];
 
 
     const goNext = (): void => {

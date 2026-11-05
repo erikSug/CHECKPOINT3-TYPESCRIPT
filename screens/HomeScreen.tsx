@@ -1,7 +1,6 @@
 import { useEffect, useState,  type JSX } from 'react'
 import {
-    View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet,
-    Alert,
+    View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, StyleSheet
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';

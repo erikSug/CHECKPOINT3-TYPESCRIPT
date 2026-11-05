@@ -81,7 +81,7 @@ const CadastroScreen = ({ navigation }: Props): JSX.Element => {
                 { text: "OK", onPress: () => navigation.reset({ index: 0, routes: [{ name: 'Home' }] }) }   
         ]);
         } catch (error){
-
+            Alert.alert("Erro", "Não foi possível cadastrar os dados. Tente novamente.");
         }
 
     }

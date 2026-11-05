@@ -20,20 +20,23 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
         setPassword(text);
     }
 
+    const changeError = (text:string): void => {
+        setError(text)
+    }
     const login = async (): Promise<void> => {
         try {
             const stored = await AsyncStorage.getItem('account');
 
             
             if (stored === null) {
-                Alert.alert("Erro", "Nenhuma conta cadastrada.");
+                changeError("Conta não encontrada")
                 return;
             }
 
             const account = JSON.parse(stored);
 
             if (account.username !== user || account.password !== password) {    
-                Alert.alert("Erro", "Usuário ou senha incorretos.");
+                changeError("Usuário ou senha errada.")
                 return
             }
 
@@ -52,7 +55,7 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
             );
        
         } catch (error){
-
+            Alert.alert("Erro", "Não foi possível acessar os dados. Tente novamente.");    
         }
     }
 
@@ -73,7 +76,7 @@ const LoginScreen = ({ navigation }: Props): JSX.Element => {
                     value={user}
                     onChangeText={changeUser}
                 />
-                {error !== '' && <Text style={styles.error}>{error}</Text>}
+
                 <Text style={styles.subtitle}>Senha</Text>
                 <TextInput
                     style={styles.input}
