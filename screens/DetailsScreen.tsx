@@ -20,15 +20,16 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
 
     const goNext = (): void => {
         if (next) {
-        navigation.setParams({ music: next });
+            navigation.push('Detail', { music: next });
         }
     };
     const goPrevious = (): void => {
-    if (previous) {
-        navigation.setParams({ music: previous });
-    }
+        navigation.goBack();
     };
-
+    
+    const goHome = (): void => {
+        navigation.popToTop();
+    };
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>

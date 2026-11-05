@@ -6,7 +6,7 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { MUSICS } from '../data/musics';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
                 <View style={styles.content}>
                     <Text style={styles.title}>Bem-vindo, {username}! </Text>
-                    <Text style={styles.subtitle}>10000 músicas estão esperando por você! </Text>
+                    <Text style={styles.subtitle}>{MUSICS.length} músicas estão esperando por você! </Text>
 
                     <TouchableOpacity style={styles.button} onPress={navLista}>
                         <Text style={styles.buttonText}>VER MÚSICAS</Text>
