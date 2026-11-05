@@ -1,5 +1,5 @@
 import { type JSX } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ListRenderItemInfo} from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Music, RootStackParamList } from '../types';
 import { MUSICS, formatDuration } from '../data/musics';
@@ -14,6 +14,16 @@ const ListScreen = (): JSX.Element => {
     navigation.navigate("Detail", { music });
   };
 
+
+  const renderMusic = ({ item }: ListRenderItemInfo<Music>): JSX.Element => (
+    <TouchableOpacity style={styles.row} onPress={() => open(item)}>
+      <Text style={styles.name}>{item.title}</Text>
+      <Text style={styles.detail}>
+        {item.artist} · {item.genre} · {formatDuration(item.durationSec)}
+      </Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>MÚSICAS</Text>
@@ -24,14 +34,7 @@ const ListScreen = (): JSX.Element => {
         contentContainerStyle={styles.list}
         initialNumToRender={15}
         windowSize={7}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.row} onPress={() => open(item)}>
-            <Text style={styles.name}>{item.title}</Text>
-            <Text style={styles.detail}>
-              {item.artist} · {item.genre} · {formatDuration(item.durationSec)}
-            </Text>
-          </TouchableOpacity>
-        )}
+        renderItem={renderMusic}
       />
     </View>
   );
