@@ -26,7 +26,7 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
     const goPrevious = (): void => {
         navigation.goBack();
     };
-    
+
     const goHome = (): void => {
         navigation.popToTop();
     };
@@ -47,7 +47,7 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
                     <Text style={styles.buttonText} >Voltar</Text>
                 </TouchableOpacity>
                                 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={goHome}>
                     <Text style={styles.buttonText} >Início</Text>
                 </TouchableOpacity>
                 </View>

@@ -75,11 +75,10 @@ const CadastroScreen = ({ navigation }: Props): JSX.Element => {
                 'account',
                 JSON.stringify({ username: user, password: password })
             );
+            await AsyncStorage.setItem('session', JSON.stringify({ username: user }));
+            
             Alert.alert("Sucesso", "Conta criada com sucesso!", [
-            { 
-                text: "OK", 
-                onPress: () => navigation.goBack() 
-            }
+                { text: "OK", onPress: () => navigation.reset({ index: 0, routes: [{ name: 'Home' }] }) }   
         ]);
         } catch (error){
 
