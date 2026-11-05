@@ -19,8 +19,26 @@ const App = (): JSX.Element => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Cadastro" component={CadastroScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Lista" component={ListScreen} />
-        <Stack.Screen name="Detail" component={DetailsScreen} />
+        <Stack.Screen
+          name="Lista"
+          component={ListScreen}
+          options={{
+            headerShown: true,
+            title: 'Músicas',
+            headerStyle: { backgroundColor: '#17171B' },
+            headerTintColor: '#EDEDEF',
+          }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={DetailsScreen}
+          options={({ route }) => ({
+            headerShown: true,
+            title: route.params.music.title,
+            headerStyle: { backgroundColor: '#17171B' },
+            headerTintColor: '#EDEDEF',
+          })}
+/>
       </Stack.Navigator>
     </NavigationContainer>
   );
