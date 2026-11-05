@@ -14,13 +14,21 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
     const { music } = route.params;
 
     const index = MUSICS.findIndex((m) => m.id === music.id);
-    const next = MUSICS[index + 1];
+    const next= MUSICS[index + 1];
+    const previous = MUSICS[index - 1];
+
 
     const goNext = (): void => {
         if (next) {
         navigation.setParams({ music: next });
         }
-  };
+    };
+    const goPrevious = (): void => {
+    if (previous) {
+        navigation.setParams({ music: previous });
+    }
+    };
+
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
@@ -34,7 +42,7 @@ const DetailsScreen = ({ route, navigation}: Props, ): JSX.Element => {
                     <Text style={styles.buttonText} >Próxima Música</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={goPrevious}>
                     <Text style={styles.buttonText} >Voltar</Text>
                 </TouchableOpacity>
                                 
