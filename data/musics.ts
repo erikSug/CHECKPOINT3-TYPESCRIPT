@@ -37,7 +37,7 @@ const buildMusics = (total: number): Music[] => {
 
 // quantas músicas o catálogo tem. Com ScrollView + map, 100 mil nunca chegam a aparecer na tela;
 // para VER a tela travar e depois aparecer, experimente 5000. A FlatList abre as 100 mil na hora
-export const TOTAL_MUSICS: number = 5000;
+export const TOTAL_MUSICS: number = 100000;
 
 // o catálogo inteiro
 export const MUSICS: Music[] = buildMusics(TOTAL_MUSICS);

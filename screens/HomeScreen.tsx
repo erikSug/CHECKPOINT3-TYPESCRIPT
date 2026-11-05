@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={styles.screen}>
                 <View style={styles.content}>
                     <Text style={styles.title}>Bem-vindo, {username}! </Text>
-                    <Text style={styles.subtitle}>5000 músicas estão esperando por você! </Text>
+                    <Text style={styles.subtitle}>10000 músicas estão esperando por você! </Text>
 
                     <TouchableOpacity style={styles.button} onPress={navLista}>
                         <Text style={styles.buttonText}>VER MÚSICAS</Text>

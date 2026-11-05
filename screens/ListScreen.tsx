@@ -8,10 +8,10 @@ import { MUSICS, formatDuration } from '../data/musics';
 // desenha as músicas todas de uma vez. Com 100 mil a tela nunca chega; com TOTAL_MUSICS = 5000
 // ela trava uns segundos e aparece. A sua tarefa: converter para FlatList e voltar a 100 mil
 const ListScreen = (): JSX.Element => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList, 'Lista'>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const open = (music: Music): void => {
-    // TRANSIÇÃO Lista → Detalhe: a sua escolha, levando a música junto
+    navigation.navigate("Detail", { music });
   };
 
   return (
